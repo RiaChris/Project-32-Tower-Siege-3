@@ -10,7 +10,8 @@ var ball;
 var slingShot;
 var polygon_img;
 var score = 0;
-var bckImg = "images/light.jpg";
+var bg;
+var bckImg;
 
 function preload(){
   getBackgroundImage();
@@ -182,19 +183,19 @@ function keyPressed(){
 }
 
 async function getBackgroundImage(){
-  var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
-  //var response = await fetch("https://worldtimeapi.org/api/timezone/America/New_York");
+  //var response = await fetch("https://worldtimeapi.org/api/timezone/Asia/Kolkata");
+  var response = await fetch("https://worldtimeapi.org/api/timezone/America/New_York");
   var responseJSON = await response.json();
   var dateTime = responseJSON.datetime;
   var hour = dateTime.slice(11,13);
-  var bg;
+  
   console.log(hour);
   console.log(dateTime);
   if(hour >=06 && hour <=18){
-    bg = "images/light.jpg";
+    bg = "light.jpg";
   }
   else{
-    bg = "images/dark.jpg";
+    bg = "night.jpg";
   }
 
   bckImg = loadImage(bg);
